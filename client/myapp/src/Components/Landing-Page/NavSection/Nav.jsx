@@ -8,6 +8,7 @@ import {
   ButtonGroup,
   GridItem,
 } from "@chakra-ui/react";
+import CustomButton from "../../Common/Button/CustomButton";
 const Nav = () => {
   return (
     <Box
@@ -32,9 +33,7 @@ const Nav = () => {
           outlineOffset="-1px">
           Log in
         </Button>
-        <Button _hover={{ bg: "primary.400" }} bg="primary.700" color="white">
-          Sign up
-        </Button>
+        <CustomButton text="Get Protrack for free" />
       </ButtonGroup>
     </Box>
   );
