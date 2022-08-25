@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Heading,
   Highlight,
@@ -8,10 +8,12 @@ import {
   Input,
   Button,
 } from "@chakra-ui/react";
+import gsap from "gsap-trial";
 import CustomButton from "../../../Common/Button/CustomButton";
+
 const Rightpane = () => {
   return (
-    <Box maxW="42rem">
+    <Box className="HeroContent" maxW="42rem">
       <Heading as="h1" fontSize="64px" lineHeight="tall">
         <Highlight
           query={["Collaborate", "Plan", "Manage"]}
