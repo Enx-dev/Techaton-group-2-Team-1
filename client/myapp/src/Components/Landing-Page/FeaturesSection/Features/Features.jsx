@@ -43,11 +43,11 @@ const Features = () => {
         justifyItems="center"
         height="100%">
         {FeaturesArr.map((feature) => (
-          <Box maxW="362px" height="-webkit-fit-content" key={feature._id}>
+          <Box maxW="362px" height="300px" key={feature._id}>
             <Heading fontSize="24px" textAlign="center" mb="1rem">
               {feature.name}
             </Heading>
-            <Text fontSize="16px" fontWeight="medium">
+            <Text fontSize="16px" textAlign="end" fontWeight="medium">
               {feature.desc}
             </Text>
           </Box>
