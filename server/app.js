@@ -2,9 +2,9 @@ require('dotenv').config()
 const express = require("express")
 const cors = require("cors")
 const morgan = require('morgan')
-const { notFound, errorHandler } = require("./Middlewares/error.middleware")
-const routes = require('./Routes/index.route')
-const { config } = require("./Config/index")
+const { notFound, errorHandler } = require("./middlewares/error.middleware")
+const routes = require('./routes/index.route')
+const { config } = require("./config/index")
 const cookieParser = require('cookie-parser')
 
 
