@@ -148,7 +148,4 @@ exports.logout = async (req, res, next) => {
   }
 };
 
-
-exports.forgotPassword = (req, res, next)=>{
-  
-}
+exports.forgotPassword = (req, res, next) => {};
