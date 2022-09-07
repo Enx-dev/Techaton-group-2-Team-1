@@ -2,10 +2,11 @@ require('dotenv').config()
 const express = require("express")
 const cors = require("cors")
 const morgan = require('morgan')
-const { notFound, errorHandler } = require("./Middlewares/error.middleware")
-const routes = require('./Routes/index.route')
-const { config } = require("./Config/index")
+const { notFound, errorHandler } = require("./middlewares/error.middleware")
+const routes = require('./routes/index.route')
+const { config } = require("./config/index")
 const cookieParser = require('cookie-parser')
+const passport = require('passport')
 
 
 const app = express()
@@ -14,6 +15,8 @@ const app = express()
 app.use(cors())
 app.use(morgan("dev"))
 app.use(cookieParser())
+app.use(passport.initialize())
+app.use(passport.session())
 
 //Built-in middlewares
 app.use(express.json())
