@@ -48,7 +48,7 @@ exports.signUp = async (req, res, next) => {
 
 exports.login = async (req, res, next) => {
   try {
-    console.log(req.cookies);
+  
     const { email, password } = req.body;
     if (!email || !password) {
       return next(
@@ -69,12 +69,20 @@ exports.login = async (req, res, next) => {
         APIError.customError("Sorry, Invalid password for this user", 400)
       );
     }
+    const loggedIn = user.refreshToken
+    if(loggedIn){
+      return next(
+        APIError.customError(`There is already an active session using your account`, 400)
+      )
+    }
+
+
     //creating JWTs - AccessToken and RefreshToken
     const accessSecret = `${process.env.JWT_SECRET_TOKEN}`;
     const refreshSecret = `${process.env.JWT_REFRESH_TOKEN}`;
     const payload = { id: user._id };
 
-    const token = jwt.sign(payload, accessSecret, { expiresIn: "20s" });
+    const token = jwt.sign(payload, accessSecret, { expiresIn: "5s" });
     const refreshToken = jwt.sign(payload, refreshSecret, { expiresIn: "1d" });
 
     user.refreshToken = refreshToken;
@@ -82,14 +90,14 @@ exports.login = async (req, res, next) => {
 
     //set cookie
     res.cookie("jwt", refreshToken, {
-      httpOnly: true,
+      httpOnly: false,
       maxAge: 24 * 60 * 60 * 1000,
     });
     const data = buildUser(user.toObject());
     res
       .status(200)
       .json(
-        buildResponse("Account Logged-in successfully", data, "user", { token })
+        buildResponse("Account Logged-in successfully", data, "user", { token, refreshToken })
       );
   } catch (err) {
     next(err);
@@ -117,8 +125,13 @@ exports.refreshToken = async (req, res, next) => {
       return next(APIError.customError(`Forbidden`, 403));
     const payload = { id: user._id, role: user.role };
     const accessSecret = `${process.env.JWT_SECRET_TOKEN}`;
-    const token = jwt.sign(payload, accessSecret, { expiresIn: "20s" });
-    res.json({ token });
+    const refreshSecret = `${process.env.JWT_REFRESH_TOKEN}`;
+    const token = jwt.sign(payload, accessSecret, { expiresIn: "5s" });
+    const newRefreshToken = jwt.sign(payload, refreshSecret, { expiresIn: "20s" });
+    user.refreshToken = newRefreshToken
+    await user.save();
+
+    res.json({ token, refreshToken:newRefreshToken });
   } catch (err) {
     next(err);
   }
@@ -129,19 +142,19 @@ exports.logout = async (req, res, next) => {
   try {
     const cookies = req.cookies;
     if (!cookies?.jwt) {
-      return next(APIError.customError(`No content, success`, 204));
+      return next(APIError.customError(`No valid cookie`, 400));
     }
     const refreshToken = cookies.jwt;
     const user = await UserModel.findOne({ refreshToken });
 
     if (!user) {
-      res.clearCookie("jwt", { httpOnly: true, maxAge: 24 * 60 * 60 * 1000 });
-      return res.sendStatus(204);
+      res.clearCookie("jwt", { httpOnly: false});
+      return res.status(204).json(`You're not logged in at the moment.`);
     }
     //Delete refreshToken
     user.refreshToken = "";
     await user.save();
-    res.clearCookie("jwt", { httpOnly: true, maxAge: 24 * 60 * 60 * 1000 });
+    res.clearCookie("jwt", { httpOnly: false, maxAge: 24 * 60 * 60 * 1000 });
     res.status(200).json({ msg: `You have successfully logged out ` });
   } catch (err) {
     next(err);
