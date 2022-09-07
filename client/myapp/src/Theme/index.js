@@ -51,7 +51,15 @@ export const theme = extendTheme({
       1000: "#022510",
     },
   },
+  breakpoints: {
+    sm: "375px",
+    md: "768px",
+    lg: "1204px",
+    xl: "1440px",
+    "2xl": "1536px",
+  },
   fonts: {
     body: "'Poppins', sans-serif",
+    headings: { fontFamily: "'Poppins', sans-serif" },
   },
 });

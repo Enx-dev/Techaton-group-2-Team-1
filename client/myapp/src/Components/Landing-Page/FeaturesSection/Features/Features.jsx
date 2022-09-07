@@ -37,17 +37,25 @@ const Features = () => {
   return (
     <Box w="100%" justifySelf="stretch">
       <SimpleGrid
-        columns={2}
-        gap="0.2rem"
+        columns={[1, 1, 2]}
+        gap="60px"
         alignContent="space-between"
         justifyItems="center"
         height="100%">
         {FeaturesArr.map((feature) => (
-          <Box maxW="362px" height="300px" key={feature._id}>
-            <Heading fontSize="24px" textAlign="center" mb="1rem">
+          <Box key={feature._id}>
+            <Heading
+              fontSize={["30px", "30px", "24px"]}
+              color="primary.600"
+              textAlign={["center", "center", "start"]}
+              mb="1rem">
               {feature.name}
             </Heading>
-            <Text fontSize="16px" textAlign="end" fontWeight="medium">
+            <Text
+              textAlign={["center", "center", "revert"]}
+              paddingInlineEnd="1rem"
+              fontSize="16px"
+              fontWeight="medium">
               {feature.desc}
             </Text>
           </Box>

@@ -9,7 +9,7 @@ const FeaturesSection = () => {
       <Box
         mt="5rem"
         display="flex"
-        height="491px"
+        flexDirection={["column", "column", "row"]}
         gap="4rem"
         justifyContent="space-between">
         <MainImg />

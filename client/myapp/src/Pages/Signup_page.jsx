@@ -1,7 +1,14 @@
 import React from "react";
-import SignUp from "../Components/Signup/Signup";
-const Signup_page = () => {
-  return <SignUp />;
+import fes from "../Asset/Frame 210.svg";
+import Form from "../Components/Signup/Form/Form";
+import { AuthpageWrapper, AuthpageImage } from "../Components/Common";
+const Signup = () => {
+  return (
+    <AuthpageWrapper>
+      <AuthpageImage img={fes} />
+      <Form />
+    </AuthpageWrapper>
+  );
 };
 
-export default Signup_page;
+export default Signup;

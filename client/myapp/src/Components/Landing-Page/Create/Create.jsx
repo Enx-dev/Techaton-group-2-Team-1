@@ -1,23 +1,34 @@
 import React from "react";
-import { Box, Flex, Heading, Image, Text } from "@chakra-ui/react";
+import { Box, Container, Heading, Image, Text } from "@chakra-ui/react";
 import create from "../../../Asset/illustration_Create.svg";
 
 const Create = () => {
   return (
-    <Flex display={"flex"} mx={"50px"} w={"100%"} h={"100%"}>
+    <Container
+      display="flex"
+      mt={["5rem", "5rem", "2rem"]}
+      flexDirection={["column-reverse", "column-reverse", "row"]}
+      alignItems="center"
+      paddingInline="0"
+      gap="3rem"
+      justifyContent={["space-evenly", "space-evenly", "space-between"]}
+      maxW="90vw">
       <Box>
-        <Heading noOfLines={2} mt={"50px"}>
+        <Heading
+          noOfLines={2}
+          fontSize={["20px", "24px", "32px", "48px"]}
+          lineHeight={["24px", "32px", "40px", "72px"]}>
           Create task and collaborate with your team effectively.
         </Heading>
-        <Text mt={"20px"} noOfLines={2} ml={"10px"}>
+        <Text mt={"20px"} fontSize="16px" lineHeight="24px">
           Protrack is a task management app designed to help individual and
           teams work together in one unified workspace.
         </Text>
       </Box>
-      <Box m={"auto"} mt={"30px"} mr={"30px"}>
+      <Box h="fit-content">
         <Image src={create} />
       </Box>
-    </Flex>
+    </Container>
   );
 };
 

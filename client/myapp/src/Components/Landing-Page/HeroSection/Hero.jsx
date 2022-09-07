@@ -7,7 +7,7 @@ const Hero = () => {
     <Container
       mt="2rem"
       display="flex"
-      flexDirection="row-reverse"
+      flexDirection={["column", "column", "row-reverse"]}
       alignItems="center"
       justifyContent="space-between"
       maxW="90vw">
