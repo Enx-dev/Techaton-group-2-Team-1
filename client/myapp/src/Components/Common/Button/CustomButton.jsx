@@ -1,8 +1,9 @@
 import React from "react";
 import { Button } from "@chakra-ui/react";
-const CustomButton = ({ text, icon, action, type, link }) => {
+const CustomButton = ({ text, icon, action, type, link, ...addon }) => {
   return (
     <Button
+      {...addon}
       leftIcon={icon}
       type={type}
       width="100%"

@@ -16,11 +16,16 @@ const Rightpane = () => {
       <Heading
         as="h1"
         fontSize={["28px", "32px", "52px", "64px"]}
-        lineHeight="tall"
-        textAlign={["center", "center", "revert"]}>
+        lineHeight={["32px", "42px", "60px", "78px"]}
+        textAlign={["center", "center", "revert"]}
+        mb="1rem">
         <Highlight
           query={["Collaborate", "Plan", "Manage"]}
-          styles={{ color: "primary.600" }}>
+          styles={{
+            color: "transparent",
+            bgClip: "text",
+            bgGradient: "linear(to-r, primary.500,primary.700)",
+          }}>
           Protrack helps team to Collaborate, Plan and Manage tasks.
         </Highlight>
       </Heading>
@@ -42,8 +47,13 @@ const Rightpane = () => {
           width={["100%", "100%", "160%"]}
           type="email"
           placeholder="Email"
+          border="2px solid transparent;"
+          _focus={{ boxShadow: "inset 1px 1px 5px 2px black", outline: "none" }}
+          _focusWithin={{ boxShadow: "inset 1px 1px 5px 2px black" }}
+          boxShadow="inset -4px -3px 5px -1px #0000004f, 2px 2px 4px 1px #80808066"
         />
         <CustomButton
+          boxShadow="inset -4px -3px 5px -1px #0000004f, 2px 2px 4px 1px #80808066"
           text={
             <Link w="100%" _hover={{ textDecoration: "none" }} href="/signin">
               Sign in

@@ -1,5 +1,12 @@
 import React from "react";
-import { Box, Container, Heading, Image, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Container,
+  Heading,
+  Image,
+  Text,
+  Highlight,
+} from "@chakra-ui/react";
 import create from "../../../Asset/illustration_Create.svg";
 
 const Create = () => {
@@ -17,15 +24,23 @@ const Create = () => {
         <Heading
           noOfLines={2}
           fontSize={["20px", "24px", "32px", "48px"]}
-          lineHeight={["24px", "32px", "40px", "72px"]}>
-          Create task and collaborate with your team effectively.
+          lineHeight={["24px", "32px", "40px", "60px"]}>
+          <Highlight
+            query={["collaborate", "Create", "team"]}
+            styles={{
+              color: "transparent",
+              bgClip: "text",
+              bgGradient: "linear(to-r, primary.500,primary.700)",
+            }}>
+            Create task and collaborate with your team effectively.
+          </Highlight>
         </Heading>
-        <Text mt={"20px"} fontSize="16px" lineHeight="24px">
+        <Text mt={"20px"} fontSize="16px" lineHeight="24px" pr="20rem">
           Protrack is a task management app designed to help individual and
           teams work together in one unified workspace.
         </Text>
       </Box>
-      <Box h="fit-content">
+      <Box w="60vw" maxW="700px" minW="300px" h="fit-content">
         <Image src={create} />
       </Box>
     </Container>

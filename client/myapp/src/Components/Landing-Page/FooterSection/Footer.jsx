@@ -3,18 +3,21 @@ import {
   Box,
   Flex,
   Heading,
-  Image,
   List,
   ListItem,
   SimpleGrid,
 } from "@chakra-ui/react";
-import logo from "../../../Asset/photo_6050723684810865244_y-removebg-preview.svg";
 const Footer = () => {
   const linksGroup_1 = ["Home", "About us", "Contact"];
   const linksGroup_2 = ["Designers", "Product Managers", "Freelancers"];
   const linksGroup_3 = ["Help Center", "Privacy Policy", "Terms of service"];
   return (
-    <Box as="footer" bg="primary.700" paddingBlock="3rem" color="#F6F6F6">
+    <Box
+      as="footer"
+      mt="2rem"
+      bgGradient="linear(to-b, primary.500,primary.700)"
+      paddingBlock="3rem"
+      color="#F6F6F6">
       <Flex
         justifyContent="space-between"
         flexDirection={["column", "column", "row"]}
