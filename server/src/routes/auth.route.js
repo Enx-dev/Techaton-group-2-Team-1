@@ -5,8 +5,7 @@ const {
   signUp,
   login,
   refreshToken,
-  logout,
-  forgotPassword,
+  logout
 } = require("../controllers/auth.controller");
 require("../controllers/thirdParty.controllerr");
 
@@ -33,6 +32,6 @@ function(req,res){
 
 auth.get("/refresh", refreshToken);
 auth.get("/logout", logout);
-auth.get("/forgotPassword", forgotPassword);
+
 
 module.exports = auth;

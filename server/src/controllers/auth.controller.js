@@ -69,12 +69,12 @@ exports.login = async (req, res, next) => {
         APIError.customError("Sorry, Invalid password for this user", 400)
       );
     }
-    const loggedIn = user.refreshToken
+    /* const loggedIn = user.refreshToken
     if(loggedIn){
       return next(
         APIError.customError(`There is already an active session using your account`, 400)
       )
-    }
+    } */
 
 
     //creating JWTs - AccessToken and RefreshToken
@@ -161,4 +161,4 @@ exports.logout = async (req, res, next) => {
   }
 };
 
-exports.forgotPassword = (req, res, next) => {};
+
